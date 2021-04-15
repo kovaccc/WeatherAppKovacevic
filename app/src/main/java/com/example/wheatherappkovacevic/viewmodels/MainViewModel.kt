@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(private val weatherRepository: WeatherRe
         fun searchCityWeather(city: String) {
 
             viewModelScope.launch {
-                weatherRepository.getWeather(city)
+                _currentWeatherMLD.value = weatherRepository.getWeather(city)
             }
 
         }

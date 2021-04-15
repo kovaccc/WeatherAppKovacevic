@@ -1,8 +1,18 @@
+
 <resources>
     <string name="app_name">WheatherAppKovacevic</string>
 
     <string name="searchable_hint">Enter city name</string>
 
 
+
+    <string name="text_pressure"> %.1fhPa</string>
+    <string name="text_wind_speed"> %.1fm/s</string>
+    <string name="text_humidity"> %.1f\%%</string>
+    <string name="text_temperature_kelvin"> %.1fK</string>
+    <string name="weatherType">Shows weather Rain, Snow etc.</string>
+    <string name="default_textview">
+
+    </string>
 
 </resources>

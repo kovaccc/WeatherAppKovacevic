@@ -17,6 +17,7 @@ class WeatherRepositoryImpl @Inject constructor (private val weatherSource: Weat
 
         val result = withContext(IO){weatherSource.loadWeather(cityQuery)} // in background thread
 
+
         Log.d(TAG, "getWeather: ends with $result")
 
         return result

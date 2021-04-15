@@ -14,6 +14,7 @@ const val API_KEY = "bef11ff0625cc3bd7eb442d70397695b"
 interface WeatherService {
 
 
+    //TODO add units query if you want Celsius 
     @GET("data/2.5/weather")
     suspend fun searchWeather(
         @Query("q") city: String,

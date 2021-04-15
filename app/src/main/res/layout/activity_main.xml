@@ -1,18 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.wheatherappkovacevic.viewmodels.MainViewModel" />
+    </data>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvCityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_3xlarge"
+            android:text="@{viewModel.currentWeatherLD.name}"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/margin_large"
+            tools:text="Zagreb" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/ivWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/weatherType"
+                android:layout_margin="@dimen/margin_large"
+                android:scaleType="fitCenter"
+                android:src="@drawable/placeholder"
+             />
+
+
+            <TextView
+                android:id="@+id/tvTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/text_temperature_kelvin(viewModel.currentWeatherLD.main[&quot;temp&quot;])}"
+                android:textSize="@dimen/textsize_xlarge"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/margin_large"
+                tools:text="250K" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.currentWeatherLD.weather.get(0).description}"
+            android:textSize="@dimen/textsize_xxlarge"
+            android:layout_margin="@dimen/margin_large"
+            tools:text="Clear sky" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvWindSpeed"
+            android:layout_width="wrap_content"
+            android:text="@{@string/text_wind_speed(viewModel.currentWeatherLD.wind[&quot;speed&quot;] )}"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_large"
+            android:layout_margin="@dimen/margin_large"
+            tools:text="250m/s"
+             />
+
+
+        <TextView
+            android:id="@+id/tvPressure"
+            android:text="@{@string/text_pressure(viewModel.currentWeatherLD.main[&quot;pressure&quot;])}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_large"
+            android:layout_margin="@dimen/margin_large"
+            tools:text="1032hPa" />
+
+        <TextView
+            android:id="@+id/tvHumidity"
+            android:layout_width="wrap_content"
+            android:text="@{@string/text_humidity(viewModel.currentWeatherLD.main[&quot;humidity&quot;])}"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_large"
+            android:layout_margin="@dimen/margin_large"
+            tools:text="61%" />
+
+
+
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

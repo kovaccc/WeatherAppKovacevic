@@ -4,11 +4,12 @@ import android.app.SearchManager
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.Menu
 import android.widget.SearchView
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import com.example.wheatherappkovacevic.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.wheatherappkovacevic.viewmodels.MainViewModel
 
@@ -21,9 +22,20 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
 
+    private lateinit var mainActivityBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mainActivityBinding = DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
+            R.layout.activity_main
+        ).apply {
+            viewModel = mainViewModel
+            lifecycleOwner = this@MainActivity
+            executePendingBindings()
+        }
 
 
     }
@@ -54,10 +66,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-//        searchView?.setOnCloseListener {
-//            finish()
-//            false
-//        }
 
         Log.d(TAG, ".onCreateOptionsMenu: returning")
         return true
