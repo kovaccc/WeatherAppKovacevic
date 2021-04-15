@@ -1,0 +1,25 @@
+package com.example.wheatherappkovacevic.repositories.implementation
+
+import android.util.Log
+import com.example.wheatherappkovacevic.data.WeatherSource
+import com.example.wheatherappkovacevic.data.models.WeatherResponse
+import com.example.wheatherappkovacevic.repositories.WeatherRepository
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
+
+
+private const val TAG = "WeatherRepositoryImpl"
+class WeatherRepositoryImpl @Inject constructor (private val weatherSource: WeatherSource) : WeatherRepository {
+
+    override suspend fun getWeather(cityQuery: String): WeatherResponse {
+        Log.d(TAG, "getWeather: starts")
+
+        val result = withContext(IO){weatherSource.loadWeather(cityQuery)} // in background thread
+
+        Log.d(TAG, "getWeather: ends with $result")
+
+        return result
+    }
+
+}

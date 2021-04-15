@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WheatherAppKovacevic</string>
+
+    <string name="searchable_hint">Enter city name</string>
+
+
+
+</resources>
