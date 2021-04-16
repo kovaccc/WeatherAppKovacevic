@@ -1,5 +1,5 @@
-# WheatherAppKovacevic - Weather forecast application
-WheatherAppKovacevic is  android application that enables viewing forecasts of cities all over the world.
+# WeatherAppKovacevic - Weather forecast application
+WeatherAppKovacevic is  android application that enables viewing forecasts of cities all over the world.
 
 ## About
 
