@@ -13,12 +13,14 @@ import androidx.databinding.DataBindingUtil
 import com.example.wheatherappkovacevic.R
 import com.example.wheatherappkovacevic.databinding.ActivityMainBinding
 import com.example.wheatherappkovacevic.dialogs.ProgressDialog
+import com.example.wheatherappkovacevic.utils.Status
 import com.example.wheatherappkovacevic.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 
-private val TAG = "MainActivity"
+private const val TAG = "MainActivity"
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainActivityBinding: ActivityMainBinding
 
     private var snackbar: Snackbar? = null
+    private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,34 +45,34 @@ class MainActivity : AppCompatActivity() {
             lifecycleOwner = this@MainActivity
         }
 
-        mainViewModel.currentSnackbarLD.observe(this, {
-            if(it != null) {
-                createSnackBar(it)
-                snackbar!!.show()
-            }
-            else {
-                snackbar?.dismiss()
+
+        mainViewModel.currentWeatherLD.observe(this, {
+            when(it.status) {
+                Status.SUCCESS -> {
+                    snackbar?.let { it.dismiss() } // perform only if not null
+                    progressDialog?.let { it.dismiss() }
+                }
+                Status.ERROR-> {
+                    createSnackBar(it.message!!)
+                    snackbar?.show()
+                    progressDialog?.let { it.dismiss() }
+                }
+                Status.LOADING -> {
+                    createLoading()
+                    snackbar?.let { it.dismiss() }
+                }
             }
         })
 
-        mainViewModel.currentProgressbarLD.observe(this, {
-            val progressDialog = ProgressDialog()
-           if(it){
-               progressDialog.show(supportFragmentManager, "progressDialog")
-           }
-            else {
-                if(progressDialog.isResumed) progressDialog.dismiss()
-            }
-        })
     }
 
+    private fun createLoading() {
+        progressDialog = ProgressDialog()
+        progressDialog?.show(supportFragmentManager, "progressDialog")
+    }
 
     private fun createSnackBar(errorMessage:String) {
-        snackbar =  Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_INDEFINITE)
-                .setAction(getString(R.string.dismiss)) {
-                    snackbar?.dismiss()
-                    mainViewModel.resetSnackBarState()
-                }
+        snackbar = Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_INDEFINITE)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,13 +84,12 @@ class MainActivity : AppCompatActivity() {
         val searchableInfo = searchManager.getSearchableInfo(componentName)
         searchView?.setSearchableInfo(searchableInfo)
 
-        searchView?.isIconified = false
+//        searchView?.isIconified = false
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.d(TAG, ".onQueryTextSubmit: called")
 
-                mainViewModel.resetSnackBarState()
                 mainViewModel.searchCityWeather(query!!)
                 searchView?.clearFocus()
 

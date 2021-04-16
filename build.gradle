@@ -10,7 +10,6 @@ buildscript {
         coroutinesVersion = "1.4.2"
         gsonVersion = '2.8.2'
         lifecycleVersion = '2.2.0'
-
     }
 
     repositories {

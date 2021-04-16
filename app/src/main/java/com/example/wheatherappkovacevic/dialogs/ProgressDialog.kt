@@ -14,7 +14,7 @@ class ProgressDialog : AppCompatDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate: called")
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.ProgressDialogDialogStyle)
+        setStyle(STYLE_NORMAL, R.style.ProgressDialogStyle)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

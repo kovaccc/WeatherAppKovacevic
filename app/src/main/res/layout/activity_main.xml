@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize_3xlarge"
-            android:text="@{viewModel.currentWeatherLD.name}"
+            android:text="@{viewModel.currentWeatherLD.data.name}"
             android:textStyle="bold"
             android:layout_margin="@dimen/margin_large"
             tools:text="Zagreb" />
@@ -37,7 +37,7 @@
                 android:id="@+id/ivWeather"
                 android:layout_width="@dimen/imagesize_small"
                 android:layout_height="@dimen/imagesize_small"
-                bind:setImageDrawable="@{viewModel.currentWeatherLD.weather.get(0).description}"
+                bind:setImageDrawable="@{viewModel.currentWeatherLD.data.weather.get(0).description}"
                 android:contentDescription="@string/weatherType"
                 android:layout_margin="@dimen/margin_large"
                 android:scaleType="fitCenter"
@@ -48,9 +48,9 @@
                 android:id="@+id/tvTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text='@{viewModel.currentWeatherLD != null ? @string/text_temperature_kelvin(viewModel.currentWeatherLD.main[&quot;temp&quot;]) : ""}'
+                android:text='@{viewModel.currentWeatherLD.data != null ? @string/text_temperature_kelvin(viewModel.currentWeatherLD.data.main[&quot;temp&quot;]) : ""}'
                 android:textSize="@dimen/textsize_xlarge"
-                android:layout_gravity="bottom"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_large"
                 tools:text="250K" />
 
@@ -60,7 +60,7 @@
             android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.currentWeatherLD.weather.get(0).description}"
+            android:text="@{viewModel.currentWeatherLD.data.weather.get(0).description}"
             android:textSize="@dimen/textsize_xxlarge"
             android:layout_margin="@dimen/margin_large"
             tools:text="Clear sky" />
@@ -74,7 +74,7 @@
         <TextView
             android:id="@+id/tvWindSpeed"
             android:layout_width="wrap_content"
-            android:text='@{viewModel.currentWeatherLD != null ? @string/text_wind_speed(viewModel.currentWeatherLD.wind[&quot;speed&quot;] ) : ""}'
+            android:text='@{viewModel.currentWeatherLD.data != null ? @string/text_wind_speed(viewModel.currentWeatherLD.data.wind[&quot;speed&quot;] ) : ""}'
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize_large"
             android:layout_margin="@dimen/margin_large"
@@ -84,7 +84,7 @@
 
         <TextView
             android:id="@+id/tvPressure"
-            android:text='@{viewModel.currentWeatherLD != null ? @string/text_pressure(viewModel.currentWeatherLD.main[&quot;pressure&quot;]) : ""}'
+            android:text='@{viewModel.currentWeatherLD.data != null ? @string/text_pressure(viewModel.currentWeatherLD.data.main[&quot;pressure&quot;]) : ""}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize_large"
@@ -94,7 +94,7 @@
         <TextView
             android:id="@+id/tvHumidity"
             android:layout_width="wrap_content"
-            android:text='@{viewModel.currentWeatherLD != null ? @string/text_humidity(viewModel.currentWeatherLD.main[&quot;humidity&quot;]) : ""}'
+            android:text='@{viewModel.currentWeatherLD.data != null ? @string/text_humidity(viewModel.currentWeatherLD.data.main[&quot;humidity&quot;]) : ""}'
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize_large"
             android:layout_margin="@dimen/margin_large"

@@ -2,7 +2,7 @@
 <resources>
 
 
-    <style name="ProgressDialogDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="ProgressDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="windowNoTitle">false</item>
     </style>
 

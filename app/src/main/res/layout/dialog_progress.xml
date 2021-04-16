@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:padding="13dp"
+    android:padding="@dimen/padding_large"
     android:layout_centerHorizontal="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ProgressBar
         android:id="@+id/pbLoader"
-        android:layout_marginEnd="5dp"
-        android:layout_width="45dp"
-        android:layout_height="45dp" />
+        android:layout_marginEnd="@dimen/margin_extrasmall"
+        android:layout_width="@dimen/imagesize_small"
+        android:layout_height="@dimen/imagesize_small" />
     <TextView
         android:id="@+id/tvLoadingMsg"
         android:layout_width="wrap_content"
