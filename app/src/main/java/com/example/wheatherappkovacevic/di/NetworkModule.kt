@@ -1,6 +1,7 @@
 package com.example.wheatherappkovacevic.di
 
 import com.example.wheatherappkovacevic.api.WeatherService
+import com.example.wheatherappkovacevic.utils.ResponseHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +14,11 @@ import javax.inject.Singleton
 class NetworkModule {
     @Singleton
     @Provides
-    fun provideUnsplashService(): WeatherService {
+    fun provideWeatherService(): WeatherService {
         return WeatherService.create()
     }
+
+
+    @Provides
+    fun provideResponseHandler() = ResponseHandler()
 }

@@ -11,8 +11,8 @@
     <string name="text_humidity"> %.1f\%%</string>
     <string name="text_temperature_kelvin"> %.1fK</string>
     <string name="weatherType">Shows weather Rain, Snow etc.</string>
-    <string name="default_textview">
+    <string name="dismiss">Dismiss</string>
+    <string name="loading">Loading...</string>
 
-    </string>
 
 </resources>

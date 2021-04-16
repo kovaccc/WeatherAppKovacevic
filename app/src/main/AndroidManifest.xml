@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:name=".MainApplication"
         android:theme="@style/Theme.WheatherAppKovacevic">
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>
